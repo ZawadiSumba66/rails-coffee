@@ -12,6 +12,7 @@ Rails.application.routes.draw do
       post 'social_auth/callback', to: 'social_auth_controller#authenticate_social_auth_user' # this is the line where we add our routes
       resources :users
       resources :admins
+      resources :avatar
     end
   end
 end
