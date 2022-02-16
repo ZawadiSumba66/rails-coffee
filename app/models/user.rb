@@ -9,6 +9,8 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: true
 
   has_one :avatar
+
+  has_many :coffees
   
   def self.signin_or_create_from_provider(provider_data)
       where(provider: provider_data[:provider], uid: provider_data[:uid]).first_or_create do |user|
