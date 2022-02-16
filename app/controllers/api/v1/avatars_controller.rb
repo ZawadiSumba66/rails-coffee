@@ -1,15 +1,16 @@
 class Api::V1::AvatarController < ApiController
     def create
+        image = params[:avatar][:image]
         avatar = current_user.avatar.create(avatar_params)
         avatar.image.attach(image) if image.present?
-        url = Avatar.image_url(avatar.image)
+        url = Avatar.avatar_url(avatar.image)
         if avatar.save
             render json: { avatar_url: url }, status: 200
         end
     end
 
     def edit
-        avatar =  Avatar.find(params[:id])
+        avatar = Avatar.find(params[:id])
     end
 
     def update

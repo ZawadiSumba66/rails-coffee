@@ -7,12 +7,14 @@ Rails.application.routes.draw do
   # root "articles#index"
   namespace :api do
     namespace :v1 do
+      post :auth, to: 'authentication#create'
       post '/presigned_url', to: 'direct_upload#create'
       devise_for 'User', at: 'auth', skip: [:omniauth_callbacks]
       post 'social_auth/callback', to: 'social_auth_controller#authenticate_social_auth_user' # this is the line where we add our routes
       resources :users
       resources :admins
       resources :avatars
+      resources :coffees
     end
   end
 end
