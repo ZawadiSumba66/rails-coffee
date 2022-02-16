@@ -39,6 +39,7 @@ gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'
 gem 'aws-sdk-s3'
 gem 'dotenv-rails'
+gem 'net-http'
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 gem "rack-cors"

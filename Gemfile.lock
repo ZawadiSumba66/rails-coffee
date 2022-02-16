@@ -151,6 +151,9 @@ GEM
     multi_json (1.15.0)
     multi_xml (0.6.0)
     multipart-post (2.1.1)
+    net-http (0.2.0)
+      net-protocol
+      uri
     net-imap (0.2.3)
       digest
       net-protocol
@@ -242,6 +245,7 @@ GEM
     timeout (0.2.0)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
+    uri (0.11.0)
     warden (1.2.9)
       rack (>= 2.0.9)
     websocket-driver (0.7.5)
@@ -260,6 +264,7 @@ DEPENDENCIES
   devise
   dotenv-rails
   jwt
+  net-http
   omniauth
   omniauth-facebook
   omniauth-google-oauth2
