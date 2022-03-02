@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_16_090220) do
+ActiveRecord::Schema.define(version: 2022_03_01_145319) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,18 +43,6 @@ ActiveRecord::Schema.define(version: 2022_02_16_090220) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
-  create_table "admins", force: :cascade do |t|
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at", precision: 6
-    t.datetime "remember_created_at", precision: 6
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["email"], name: "index_admins_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
-  end
-
   create_table "avatars", force: :cascade do |t|
     t.string "image"
     t.bigint "user_id", null: false
@@ -75,6 +63,33 @@ ActiveRecord::Schema.define(version: 2022_02_16_090220) do
     t.index ["user_id"], name: "index_coffees_on_user_id"
   end
 
+  create_table "espressos", force: :cascade do |t|
+    t.string "name"
+    t.string "image"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_espressos_on_user_id"
+  end
+
+  create_table "lattes", force: :cascade do |t|
+    t.string "name"
+    t.string "image"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_lattes_on_user_id"
+  end
+
+  create_table "populars", force: :cascade do |t|
+    t.string "name"
+    t.string "image"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_populars_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -87,6 +102,7 @@ ActiveRecord::Schema.define(version: 2022_02_16_090220) do
     t.string "lastname"
     t.string "provider"
     t.string "uid"
+    t.boolean "admin", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["provider"], name: "index_users_on_provider"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
@@ -97,4 +113,7 @@ ActiveRecord::Schema.define(version: 2022_02_16_090220) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "avatars", "users"
   add_foreign_key "coffees", "users"
+  add_foreign_key "espressos", "users"
+  add_foreign_key "lattes", "users"
+  add_foreign_key "populars", "users"
 end

@@ -1,6 +1,7 @@
-class Api::V1::CoffeeController < ApiController
+class Api::V1::CoffeesController < ApiController
+    skip_before_action :authenticate_user!
     def create
-        coffee = current_user.coffee.create(coffee_params)
+        coffee = current_user.coffees.create(coffee_params)
         if coffee.save
            render json: coffee,  status: 200
         else
@@ -15,6 +16,6 @@ class Api::V1::CoffeeController < ApiController
     
     private
     def coffee_params
-        params.(:coffee).permit(:size, :milk, :quantity, :topping, :price);
+        params.require(:coffee).permit(:size, :milk, :quantity, :topping, :price, :user_id);
     end
 end

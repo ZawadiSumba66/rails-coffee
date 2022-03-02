@@ -281,6 +281,7 @@ config.omniauth :facebook,
                 Rails.application.credentials[:facebook_app_id],
                 Rails.application.credentials[:facebook_app_secret],
                 scope: 'public_profile,email'
+                
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
