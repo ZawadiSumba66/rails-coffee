@@ -8,11 +8,10 @@ class User < ApplicationRecord
   validates_format_of :email, {with: Devise::email_regexp, message: 'must be a valid email address'}
   validates :email, presence: true, uniqueness: true
 
-  has_one :avatar
+  has_many :avatars
 
-  has_many :lattes
-  has_many :espressos
-  has_many :populars
+  has_many :posts
+  has_many :categories
 
   def self.signin_or_create_from_provider(provider_data)
       where(provider: provider_data[:provider], uid: provider_data[:uid]).first_or_create do |user|
