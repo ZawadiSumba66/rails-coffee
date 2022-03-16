@@ -1,5 +1,4 @@
 class Api::V1::CoffeesController < ApiController
-    skip_before_action :authenticate_user!
     def create
         coffee = current_user.coffees.create(coffee_params)
         if coffee.save

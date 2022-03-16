@@ -1,12 +1,19 @@
-class Api::V1::AvatarController < ApiController
+class Api::V1::AvatarsController < ApiController
     def create
         image = params[:avatar][:image]
-        avatar = current_user.avatar.create(avatar_params)
+        avatar = current_user.avatars.create(avatar_params)
         avatar.image.attach(image) if image.present?
         url = Avatar.avatar_url(avatar.image)
         if avatar.save
-            render json: { avatar_url: url }, status: 200
+            render json: { avatar_url: url}, status: 200
+        else
+            render json: { message: 'An error occured while adding your photo' }, status: 400
         end
+    end
+    
+    def show
+        avatar = Avatar.find(params[:id])
+        render json: avatar
     end
 
     def edit
