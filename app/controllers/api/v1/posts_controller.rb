@@ -21,9 +21,18 @@ class Api::V1::PostsController < ApiController
         post = Post.find(params[:id])
         render json: post
     end
+
+    def update
+        post = Post.find(params[:id])
+        if post.update(post_params)
+            render json: post, status: 200
+        else
+            render json: {message: 'An error occurred while updating the post'}, status: 400
+        end
+    end
     
     private
     def post_params
-        params.require(:post).permit(:name, :image, :category_id);
+        params.require(:post).permit(:name, :image, :price, :category_id);
     end
 end

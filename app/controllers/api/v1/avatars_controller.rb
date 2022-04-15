@@ -13,7 +13,8 @@ class Api::V1::AvatarsController < ApiController
     
     def show
         avatar = Avatar.find(params[:id])
-        render json: avatar
+        url = Avatar.avatar_url(avatar.image)
+        render json: url
     end
 
     def edit

@@ -15,6 +15,6 @@ class Api::V1::CoffeesController < ApiController
     
     private
     def coffee_params
-        params.require(:coffee).permit(:size, :milk, :quantity, :topping, :price, :user_id);
+        params.require(:coffee).permit(:name, :size, :milk, :topping, :price, :user_id);
     end
 end
