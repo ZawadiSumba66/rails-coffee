@@ -1,5 +1,5 @@
- require 'stripe'
- class Api::V1::ChargesController < ApiController
+require 'stripe'
+class Api::V1::ChargesController < ApiController
  
     def index
       charges = Stripe::Charge.list({limit: 3})
