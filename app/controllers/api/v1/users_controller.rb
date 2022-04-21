@@ -1,35 +1,35 @@
-class Api::V1::UsersController < ApiController
-    skip_before_action :authenticate_user!
-    def create
+module Api
+  module V1
+    class UsersController < ApiController
+      skip_before_action :authenticate_user!
+      def create
         user = User.create(user_params)
         if user.save
-            render json: { token: JsonWebToken.encode(sub: user.id) }, status: 200
+          render json: { token: JsonWebToken.encode(sub: user.id) }, status: 200
         else
-            render json: { message: user.errors.full_messages }, status: 400
+          render json: { message: user.errors.full_messages }, status: 400
         end
-    end
+      end
 
-    def show
+      def show
         user = User.find(params[:id])
         render json: user
-    end
+      end
 
-    def edit
-        user = User.find(params[:id])
-    end
-
-    def update
+      def update
         user = User.find(params[:id])
         if user.update(user_params)
-            render json: user, status: 200
+          render json: user, status: 200
         else
-            render json: {message: 'An error occurred while updating your profile'}, status: 400
+          render json: { message: 'An error occurred while updating your profile' }, status: 400
         end
+      end
+
+      private
+
+      def user_params
+        params.require(:user).permit(:firstname, :lastname, :email, :password, :password_confirmation)
+      end
     end
-
-    private
-
-    def user_params
-      params.require(:user).permit(:firstname, :lastname, :email, :password, :password_confirmation)
-    end 
-end 
+  end
+end

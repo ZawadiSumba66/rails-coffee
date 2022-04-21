@@ -7,14 +7,16 @@
 # Devise change the default values for those options).
 #
 # Use this hook to configure devise mailer, warden hooks and so forth.
-# Many of these configuration options can be set straight in your model.
+# Many of these configuration op/tions can be set straight in your model.
 Devise.setup do |config|
   # The secret key used by Devise. Devise uses this key to generate
   # random tokens. Changing this key will render invalid all existing
   # confirmation, reset password and unlock tokens in the database.
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
-  # config.secret_key = 'c17e540ff6ca460a72ca479410fb0880afe34f7ea0bcfe5ada08a98bdb8686edfe503dc2d8932b08e0e7817fed6a51213b7133bb5804d4edadf2f926ea335ec6'
+  # config.secret_key =
+  # 'c17e540ff6ca460a72ca479410fb0880afe34f7ea0bcfe5ada08a98bdb8
+  # 686edfe503dc2d8932b08e0e7817fed6a51213b7133bb5804d4edadf2f926ea335ec6'
 
   # ==> Controller configuration
   # Configure the parent class to the devise controllers.
@@ -126,7 +128,9 @@ Devise.setup do |config|
   config.stretches = Rails.env.test? ? 1 : 12
 
   # Set up a pepper to generate the hashed password.
-  # config.pepper = '9db4c02da77e4701f542436a28af2ec19882ebe9f9208f914ec069f29dc129d9bbbefb877e5ff901578db7f654d58f081a8fbc27f7e7fa7d67f3476cee8d6962'
+  # config.pepper =
+  # '9db4c02da77e4701f542436a28af2ec19882ebe9f9208f914ec069f29dc129d9bbbefb877
+  # e5ff901578db7f654d58f081a8fbc27f7e7fa7d67f3476cee8d6962'
 
   # Send a notification to the original email when the user's email is changed.
   # config.send_email_changed_notification = false
@@ -277,11 +281,10 @@ Devise.setup do |config|
                   Rails.application.credentials[:google_app_id],
                   Rails.application.credentials[:google_app_secret],
                   { scope: 'userinfo.email, userinfo.profile', skip_jwt: true }
-config.omniauth :facebook,
-                Rails.application.credentials[:facebook_app_id],
-                Rails.application.credentials[:facebook_app_secret],
-                scope: 'public_profile,email'
-                
+  config.omniauth :facebook,
+                  Rails.application.credentials[:facebook_app_id],
+                  Rails.application.credentials[:facebook_app_secret],
+                  scope: 'public_profile,email'
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
@@ -326,13 +329,14 @@ module Devise
       def valid?
         request.headers['Authorization'].present?
       end
+
       def authenticate!
         token = request.headers.fetch('Authorization', '').split(' ').last
         payload = JsonWebToken.decode(token)
         success! User.find(payload['sub'])
-        rescue ::JWT::ExpiredSignature
+      rescue ::JWT::ExpiredSignature
         fail! 'Auth token has expired'
-        rescue ::JWT::DecodeError
+      rescue ::JWT::DecodeError
         fail! 'Auth token is invalid'
       end
     end

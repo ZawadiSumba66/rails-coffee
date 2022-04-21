@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   devise_for :users, path: 'users'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
@@ -21,7 +23,7 @@ Rails.application.routes.draw do
       resources :posts, only: %i[index show]
       resources :categories, only: %i[index show]
       scope '/admin' do
-        resources :posts, only: %i[create, update]
+        resources :posts, only: %i[create update]
         resources :categories, only: :create
       end
     end

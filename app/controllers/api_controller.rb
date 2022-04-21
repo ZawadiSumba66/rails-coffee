@@ -1,12 +1,12 @@
 class ApiController < ApplicationController
-    skip_before_action :verify_authenticity_token
+  skip_before_action :verify_authenticity_token
 
-    before_action :set_default_format
-    before_action :authenticate_user!
+  before_action :set_default_format
+  before_action :authenticate_user!
 
-    private
+  private
 
-    def set_default_format
-        request.format = :json
-    end
+  def set_default_format
+    request.format = :json
+  end
 end

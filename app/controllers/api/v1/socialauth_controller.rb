@@ -1,5 +1,7 @@
-class Api::V1::SocialAuthController < ApiController
-    def authenticate_social_auth_user
+module Api
+  module V1
+    class SocialAuthController < ApiController
+      def authenticate_social_auth_user
         #  params is the response I receive from the client with the data from the provider about the user
         @user = User.signin_or_create_from_provider(params) # this method add a user who is new or logins an old one
         if @user.persisted?
@@ -12,15 +14,16 @@ class Api::V1::SocialAuthController < ApiController
             message: "user was successfully logged in through #{params[:provider]}",
             headers: login_token
           },
-          status: :created
+                 status: :created
         else
           render json: {
             status: 'FAILURE',
             message: "There was a problem signing you in through #{params[:provider]}",
             data: @user.errors
           },
-            status: :unprocessable_entity
+                 status: :unprocessable_entity
         end
       end
-
+    end
+  end
 end
