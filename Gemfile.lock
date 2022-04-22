@@ -274,6 +274,7 @@ DEPENDENCIES
   rubocop (~> 1.27)
   stripe
   tzinfo-data
+  uri (~> 0.11.0)
 
 RUBY VERSION
    ruby 2.7.0p0
