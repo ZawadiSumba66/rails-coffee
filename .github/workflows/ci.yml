@@ -20,9 +20,6 @@ jobs:
         gem install bundler
     - name: Install Gems
       run: bundle install --path vendor/bundle --jobs 4 --retry 3
-    - name: Run Tests
-      run: |
-        bundle exec rails test
     - name: Deploy to Heroku
       env:
         HEROKU_API_TOKEN: ENV['HEROKU_API_TOKEN']
