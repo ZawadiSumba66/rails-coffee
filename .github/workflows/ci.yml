@@ -22,7 +22,7 @@ jobs:
       run: bundle install --path vendor/bundle --jobs 4 --retry 3
     - name: Run Tests
       run: |
-        gem install bundler:1.2.1
+        gem install bundler:2.3.12
         bundle exec rake test
     - name: Deploy to Heroku
       env:
