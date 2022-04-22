@@ -22,7 +22,7 @@ jobs:
       run: bundle install --path vendor/bundle --jobs 4 --retry 3
     - name: Run Tests
       run: |
-        bundle exec rake test
+        bundle exec rails test
     - name: Deploy to Heroku
       env:
         HEROKU_API_TOKEN: ENV['HEROKU_API_TOKEN']
