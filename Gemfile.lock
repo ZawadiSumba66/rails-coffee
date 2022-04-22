@@ -244,7 +244,7 @@ GEM
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
     unicode-display_width (2.1.0)
-    uri (0.11.0)
+    uri (0.10.1)
     warden (1.2.9)
       rack (>= 2.0.9)
     websocket-driver (0.7.5)
@@ -274,7 +274,7 @@ DEPENDENCIES
   rubocop (~> 1.27)
   stripe
   tzinfo-data
-  uri (~> 0.11.0)
+  uri (~> 0.10.0)
 
 RUBY VERSION
    ruby 2.7.0p0
